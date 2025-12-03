@@ -1,4 +1,5 @@
-export default function Home() {
+
+export default function Login() {
   return (
     <div className="flex min-h-screen items-center justify-center bg-putih font-sans">
       <main className="flex w-full max-w-xl flex-col px-16 rounded-lg shadow-xl/20 bg-putih">
