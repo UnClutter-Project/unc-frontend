@@ -1,24 +1,72 @@
+"use client";
+
 import Link from "next/link";
+import { useState } from "react";
 
 export default function Register() {
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [email, setEmail] = useState("");
+  const [erroruser, setErrorUser] = useState("");
+  const [erroremail, setErrorEmail] = useState("");
+  const [errorpass, setErrorPass] = useState("");
+  const [error, setError] = useState("");
+
+  const レジスター = async (e) => {
+    e.preventDefault();
+    setErrorUser("");
+
+    setErrorPass("");
+    setError("");
+
+    if (!username){
+      setErrorUser("Please enter your username u dumbass");
+    };
+    if (username == "user"){
+      setErrorUser("Choose a different username lah");
+    };
+    if (!email){
+      setErrorEmail("Enter your email bro");
+    };
+    if (email == "user@gmail.com") {
+      setErrorEmail("Email is already taken bro");
+      return;
+    }
+    if (password !== confirmPassword) {
+      setErrorPass("Passwords do not match");
+  }};
+
   return (
     <div className="flex min-h-screen items-center justify-center bg-putih font-sans">
       <main className="flex w-full max-w-xl flex-col px-16 rounded-lg shadow-xl/20 bg-putih">
-        <form>
+        <form onSubmit={レジスター}>
           <div className="text-center mb-2 text-black py-8 grid gap-4 grid-cols-3">
             <span className="col-span-3 text-3xl mb-2 font-bold text-coklat">
               Create an Account
             </span>
-            <input
+            <div className="col-span-3"> 
+              <input
               type="text"
-              className="block bg-transparent text-black col-span-3 border rounded-sm mb-2 p-2"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+              className="block w-full bg-transparent text-black border rounded-sm p-2"
               placeholder="Username"
-            />
-            <input
-              type="email"
-              className="block bg-transparent text-black col-span-3 border rounded-sm mb-2 p-2"
-              placeholder="Email"
-            />
+              />
+              {erroruser && (<p className="mt-1 text-red-500 text-left">{erroruser}</p>
+              )}
+            </div>
+            <div className="col-span-3"> 
+              <input
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className="block w-full bg-transparent text-black border rounded-sm p-2"
+                placeholder="Email"
+              />
+              {erroremail && (<p className="mt-1 text-red-500 text-left">{erroremail}</p>
+              )}
+            </div>
             <select
               id="gender"
               className="block bg-transparent text-black col-span-2 border rounded-sm mb-2 p-2"
@@ -33,26 +81,32 @@ export default function Register() {
             </select>
             <input
               type="date"
-              className="block bg-transparent text-black col-span-1 border rounded-sm mb-2 p-2"
-              placeholder=""
+              className="block bg-transparent text-black col-span-1 border rounded-sm p-2"
+              placeholder="date of birth"
             />
             <input
               type="password"
-              className="block bg-transparent text-black col-span-3 border rounded-sm mb-2 p-2"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              className="block bg-transparent text-black col-span-3 border rounded-sm p-2"
               placeholder="Password"
             />
             <input
               type="password"
-              className="block bg-transparent text-black col-span-3 border rounded-sm mb-2 p-2"
+              value={confirmPassword}
+              onChange={(e) => setConfirmPassword(e.target.value)}
+              className="block bg-transparent text-black col-span-3 border rounded-sm p-2"
               placeholder="Confirm password"
             />
-            <Link
-              className="col-span-3 flex h-12 bg-hijau text-white min-w-full items-center justify-center rounded-full border border-solid border-black px-5 transition-colors hover:border-hijau hover:bg-white hover:text-hijau md:w-[158px]"
-              href="/login"
-            >
+            {error && (<p className="col-span-3 text-red-500 text-left">{error}</p>
+            )}
+            <button
+              className="col-span-3 flex h-12 my-2 bg-hijau text-white min-w-full items-center justify-center rounded-full border border-solid border-black px-5 transition-colors hover:border-hijau hover:bg-white hover:text-hijau md:w-[158px] duration-200"
+              
+              >
               Create Account
-            </Link>
-            <div className="col-span-3 flex items-center justify-center w-full gap-4">
+            </button>
+            <div className="col-span-3 my flex items-center justify-center w-full gap-4">
               <hr className="grow" />
               <span className="text-black flex-none">
                 Already Have an Account?
@@ -60,7 +114,7 @@ export default function Register() {
               <hr className="grow" />
             </div>
             <Link
-              className="col-span-3 flex h-12 min-w-full bg-white items-center justify-center rounded-full border border-solid border-black px-5 transition-colors hover:border-transparent hover:bg-abu hover:text-white md:w-[158px]"
+              className="col-span-3 flex h-12 min-w-full bg-white items-center justify-center rounded-full border border-solid border-black px-5 transition-colors hover:border-transparent hover:bg-abu hover:text-white md:w-[158px] duration-200"
               href="/login"
             >
               Sign in
