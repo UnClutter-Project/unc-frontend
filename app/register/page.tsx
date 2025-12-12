@@ -13,7 +13,7 @@ export default function Register() {
   const [errorpass, setErrorPass] = useState("");
   const [error, setError] = useState("");
 
-  const レジスター = async (e) => {
+  const レジスター = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setErrorUser("");
 

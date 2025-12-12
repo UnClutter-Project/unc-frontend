@@ -10,7 +10,7 @@ export default function Home() {
   const [errorpass, setErrorPass] = useState("");
   const [error, setError] = useState("");
 
-  const ログイン = async (e) => {
+  const ログイン = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setErrorUser("");
     setErrorPass("");

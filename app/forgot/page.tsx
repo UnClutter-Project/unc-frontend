@@ -7,7 +7,7 @@ export default function Forgot() {
   const [email, setEmail] = useState("");
   const [error, setError] = useState("");
   
-  const 忘れた = async (e) => {
+  const 忘れた = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setError("");
 
