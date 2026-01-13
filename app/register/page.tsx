@@ -50,7 +50,7 @@ export default function Register() {
               type="text"
               value={username}
               onChange={(e) => setUsername(e.target.value)}
-              className="block w-full bg-transparent text-black border rounded-sm p-2"
+              className={`block w-full bg-transparent text-black border rounded-sm p-2 ${erroruser ? "border-red-500 bg-red-50" : ""} `}
               placeholder="Username"
               />
               {erroruser && (<p className="mt-1 text-red-500 text-left">{erroruser}</p>
@@ -61,7 +61,7 @@ export default function Register() {
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="block w-full bg-transparent text-black border rounded-sm p-2"
+                className={`block w-full bg-transparent text-black border rounded-sm p-2 ${erroremail ? "border-red-500 bg-red-50" : ""} `}
                 placeholder="Email"
               />
               {erroremail && (<p className="mt-1 text-red-500 text-left">{erroremail}</p>
@@ -88,18 +88,21 @@ export default function Register() {
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="block bg-transparent text-black col-span-3 border rounded-sm p-2"
+              className={`block bg-transparent text-black col-span-3 border rounded-sm p-2 ${errorpass ? "border-red-500 bg-red-50" : ""}`}
               placeholder="Password"
             />
-            <input
-              type="password"
-              value={confirmPassword}
-              onChange={(e) => setConfirmPassword(e.target.value)}
-              className="block bg-transparent text-black col-span-3 border rounded-sm p-2"
-              placeholder="Confirm password"
-            />
-            {error && (<p className="col-span-3 text-red-500 text-left">{error}</p>
-            )}
+            <div className="col-span-3">
+              <input
+                type="password"
+                value={confirmPassword}
+                onChange={(e) => setConfirmPassword(e.target.value)}
+                className={`block w-full bg-transparent text-black border rounded-sm p-2 ${errorpass ? "border-red-500 bg-red-50" : ""}`}
+                placeholder="Confirm password"
+              />
+              {errorpass && (<p className="mt-1 text-red-500 text-left">{errorpass}</p>
+              )}
+            </div>
+            
             <button
               className="col-span-3 flex h-12 my-2 bg-hijau text-white min-w-full items-center justify-center rounded-full border border-solid border-black px-5 transition-colors hover:border-hijau hover:bg-white hover:text-hijau md:w-[158px] duration-200"
               
