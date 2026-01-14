@@ -2,16 +2,21 @@
 
 import Link from "next/link";
 import { useState } from "react";
+import axios from "axios";
 
 export default function Register() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [email, setEmail] = useState("");
+  const [gender, setGender] = useState("");
   const [erroruser, setErrorUser] = useState("");
   const [erroremail, setErrorEmail] = useState("");
+  const [errorgender, setErrorGender] = useState("");
   const [errorpass, setErrorPass] = useState("");
   const [error, setError] = useState("");
+  const [dob, setDob] = useState("");
+  const [dobType, setDobType] = useState<"text" | "date">("text");
 
   const レジスター = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -20,21 +25,37 @@ export default function Register() {
     setErrorPass("");
     setError("");
 
+    try {
+      const parsedDob: string | null = dob
+        ? /\d{4}-\d{2}-\d{2}$/.test(dob)
+          ? `${dob}T00:00:00Z`
+          : dob
+        : null;
+
+      const user = {
+        username: username,
+        email: email,
+        gender: gender,
+        dob: parsedDob,
+        password: password,
+      }
+      console.log(user)
+      const response = await axios.post('https://unc-backend-azurerad1832-sdqpv9hb.apn.leapcell.dev/api/v0/users/register', user);
+      console.log(response)
+    } catch (error) {
+      console.log(error)
+      return;
+    }
     if (!username){
       setErrorUser("Please enter your username u dumbass");
-    };
-    if (username == "user"){
-      setErrorUser("Choose a different username lah");
     };
     if (!email){
       setErrorEmail("Enter your email bro");
     };
-    if (email == "user@gmail.com") {
-      setErrorEmail("Email is already taken bro");
-      return;
-    }
     if (password !== confirmPassword) {
       setErrorPass("Passwords do not match");
+
+
   }};
 
   return (
@@ -58,7 +79,7 @@ export default function Register() {
             </div>
             <div className="col-span-3"> 
               <input
-                type="email"
+                type="text"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 className={`block w-full bg-transparent text-black border rounded-sm p-2 ${erroremail ? "border-red-500 bg-red-50" : ""} `}
@@ -69,20 +90,26 @@ export default function Register() {
             </div>
             <select
               id="gender"
-              className="block bg-transparent text-black col-span-2 border rounded-sm mb-2 p-2"
-              defaultValue="gender"
+              className="block bg-transparent text-black col-span-2 border rounded-sm p-2"
+              onChange={(e) => setGender(e.target.value)}
+              value={gender}
             >
-              <option value="gender" disabled>
+              <option value="" disabled>
                 Gender
               </option>
               <option value="male">Male</option>
               <option value="female">Female</option>
               <option value="other">Other</option>
             </select>
+
             <input
-              type="date"
+              type={dobType}
+              value={dob}
+              onChange={(e: React.ChangeEvent<HTMLInputElement>) => setDob(e.target.value)}
+              onFocus={() => setDobType("date")}
+              onBlur={() => { if (!dob) setDobType("text"); }}
               className="block bg-transparent text-black col-span-1 border rounded-sm p-2"
-              placeholder="date of birth"
+              placeholder="Date of birth"
             />
             <input
               type="password"

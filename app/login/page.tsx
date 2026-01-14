@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useState } from "react";
+import axios from "axios";
 
 export default function Home() {
   const [username, setUsername] = useState("");
@@ -16,6 +17,17 @@ export default function Home() {
     setErrorPass("");
     setError("");
 
+    try {
+      const response = await axios.post('https://unc-backend-azurerad1832-sdqpv9hb.apn.leapcell.dev/api/v0/users/login', {
+        username: username,
+        password: password,
+      });
+      console.log(response)
+      window.location.href = "/home";
+    } catch (error) {
+      setError("Username or Password is incorrect");
+      return;
+    }
     if (!username) {
       setErrorUser("Please enter your username");
       return;
@@ -23,12 +35,6 @@ export default function Home() {
     if (!password) {
       setErrorPass("Please enter your password");
       return;
-    }
-    if (username === "user" && password === "pass") {
-      // Redirect to dashboard or home page
-      setError("memk");
-    } else {
-      setError("Invalid username or password");
     }
   };
 
