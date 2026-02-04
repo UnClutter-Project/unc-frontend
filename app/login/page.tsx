@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useState } from "react";
 import axios from "axios";
+import { redirect } from "next/navigation";
 
 export default function Home() {
   const [username, setUsername] = useState("");
@@ -23,7 +24,7 @@ export default function Home() {
         password: password,
       });
       console.log(response)
-      window.location.href = "/home";
+      redirect('/home');
     } catch (error) {
       setError("Username or Password is incorrect");
       return;
