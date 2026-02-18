@@ -24,7 +24,7 @@ export default function Home() {
         password: password,
       });
       console.log(response)
-      redirect('/home');
+      window.location.href = "/home";
     } catch (error) {
       setError("Username or Password is incorrect");
       return;
@@ -38,6 +38,8 @@ export default function Home() {
       return;
     }
   };
+
+  
 
   return (
     <div className="flex min-h-screen items-center justify-center bg-putih font-sans">

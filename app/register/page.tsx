@@ -5,6 +5,7 @@ import { useState } from "react";
 import axios from "axios";
 import type { DatePickerProps } from 'antd';
 import { DatePicker } from "antd";
+import { createStyles } from "antd-style";
 
 export default function Register() {
   const [username, setUsername] = useState("");
@@ -24,6 +25,15 @@ export default function Register() {
     console.log(dateString);
     setDob(dateString as string)
   };
+
+  const useStyles = createStyles(({ token }) => ({
+    root: {
+      border: `1px solid black 15px`,
+      borderRadius: `4px`,
+      borderColor: `black`,
+      background: `transparent`
+    },
+  }));
   
   const レジスター = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -68,6 +78,7 @@ export default function Register() {
 
 
   }};
+  const { styles: classNames } = useStyles();
 
   return (
     <div className="flex min-h-screen items-center justify-center bg-putih font-sans">
@@ -124,7 +135,7 @@ export default function Register() {
             /> */}
             <DatePicker
               onChange={PilihTanggal}
-              className="block bg-transparent text-black col-span-1 border rounded-sm p-2"
+              classNames={classNames}
               placeholder="Date of birth"
             />
             <input
