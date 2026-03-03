@@ -23,6 +23,7 @@ export default function Home() {
         password: password,
       });
       console.log(response)
+      localStorage.setItem("token", response.data.token);
       window.location.href = "/home";
     } catch (error) {
       setError("Username or Password is incorrect");
