@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useState } from "react";
 import axios from "axios";
+import { redirect } from "next/navigation";
 
 export default function Home() {
   const [username, setUsername] = useState("");
@@ -38,6 +39,8 @@ export default function Home() {
       return;
     }
   };
+
+  
 
   return (
     <div className="flex min-h-screen items-center justify-center bg-putih font-sans">

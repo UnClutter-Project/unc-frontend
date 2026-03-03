@@ -9,6 +9,8 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "antd": "^6.2.3",
+    "antd-style": "^4.1.0",
     "axios": "^1.13.2",
     "next": "16.0.6",
     "next-navigation": "^1.0.6",

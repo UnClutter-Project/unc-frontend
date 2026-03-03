@@ -3,6 +3,9 @@
 import Link from "next/link";
 import { useState } from "react";
 import axios from "axios";
+import type { DatePickerProps } from 'antd';
+import { DatePicker } from "antd";
+import { createStyles } from "antd-style";
 
 export default function Register() {
   const [username, setUsername] = useState("");
@@ -18,19 +21,36 @@ export default function Register() {
   const [dob, setDob] = useState("");
   const [dobType, setDobType] = useState<"text" | "date">("text");
 
+  const PilihTanggal: DatePickerProps['onChange'] = (date, dateString) => {
+    console.log(dateString);
+    setDob(dateString as string)
+  };
+
+  const useStyles = createStyles(({ token }) => ({
+    root: {
+      border: `1px solid black 15px`,
+      borderRadius: `4px`,
+      borderColor: `black`,
+      background: `transparent`
+    },
+  }));
+  
   const レジスター = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setErrorUser("");
-
-    setErrorPass("");
-    setError("");
-
+    
+      setErrorPass("");
+      setError("");
+    
+    
     try {
       const parsedDob: string | null = dob
         ? /\d{4}-\d{2}-\d{2}$/.test(dob)
           ? `${dob}T00:00:00Z`
           : dob
         : null;
+
+      console.log(parsedDob);
 
       const user = {
         username: username,
@@ -42,6 +62,7 @@ export default function Register() {
       console.log(user)
       const response = await axios.post('https://unc-backend-azurerad1832-sdqpv9hb.apn.leapcell.dev/api/v0/users/register', user);
       console.log(response)
+      window.location.href = "/verify";
     } catch (error) {
       console.log(error)
       return;
@@ -57,6 +78,7 @@ export default function Register() {
 
 
   }};
+  const { styles: classNames } = useStyles();
 
   return (
     <div className="flex min-h-screen items-center justify-center bg-putih font-sans">
@@ -102,13 +124,18 @@ export default function Register() {
               <option value="other">Other</option>
             </select>
 
-            <input
+            {/* <input
               type={dobType}
               value={dob}
               onChange={(e: React.ChangeEvent<HTMLInputElement>) => setDob(e.target.value)}
               onFocus={() => setDobType("date")}
               onBlur={() => { if (!dob) setDobType("text"); }}
               className="block bg-transparent text-black col-span-1 border rounded-sm p-2"
+              placeholder="Date of birth"
+            /> */}
+            <DatePicker
+              onChange={PilihTanggal}
+              classNames={classNames}
               placeholder="Date of birth"
             />
             <input

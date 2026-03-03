@@ -2,15 +2,34 @@
 
 import Link from "next/link";
 import React from "react";
+import { useState } from "react";
+import axios from "axios";  
 
-export default function verify() {
+export default function Verify() {
+
+    const verify = async (codeId: string | null) => {
+      try{
+        const response = await axios.post('https://unc-backend-azurerad1832-sdqpv9hb.apn.leapcell.dev/api/v0/users/verify', {
+            code: codeId,
+          });
+          console.log(response)
+        }
+        catch(error) {
+          console.log(error)
+          return;
+      };
+    }
 
     React.useEffect(() => { 
-        const queryString = window.location.search;
-        const params = new URLSearchParams(queryString)
-        const codeId = params.get("code")
-        console.log(codeId);
-    }, []);
+      const queryString = window.location.search;
+      const params = new URLSearchParams(queryString)
+      const codeId = params.get("code")
+      if(codeId != ""){
+        verify(codeId)
+      }
+      }, []);
+      
+    
 
   return (
     <div className="flex min-h-screen items-center justify-center bg-putih font-sans">
