@@ -2,8 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
-import { Navbar, NavbarBrand, NavbarCollapse, NavbarLink, NavbarToggle  } from "flowbite-react";
-import Link from "next/link";
+import Navi from "../navbar/navigation";
 
 export default function Home() {
 
@@ -29,25 +28,8 @@ export default function Home() {
   };
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-putih font-sans text-black">
-      <Navbar fluid rounded>
-      <NavbarBrand as={Link} href="https://flowbite-react.com">
-        <img src="/favicon.ico" className="mr-3 h-6 sm:h-9" alt="Flowbite React Logo" />
-        <span className="self-center whitespace-nowrap text-xl font-semibold dark:text-white">UnClutter</span>
-      </NavbarBrand>
-      <NavbarToggle />
-      <NavbarCollapse>
-        <NavbarLink href="#" active>
-          Home
-        </NavbarLink>
-        <NavbarLink as={Link} href="#">
-          About
-        </NavbarLink>
-        <NavbarLink href="#">Services</NavbarLink>
-        <NavbarLink href="#">Pricing</NavbarLink>
-        <NavbarLink href="#">Contact</NavbarLink>
-      </NavbarCollapse>
-    </Navbar>
+    <div className="bg-putih font-sans text-black">
+      <Navi />
       <h4>MEMK</h4>
       <button onClick={logout}>LOGOUT</button>
     </div>
