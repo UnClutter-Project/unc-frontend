@@ -29,21 +29,18 @@ export default function Navi() {
 
   return (
       <Navbar fluid rounded>
-      <NavbarBrand as={Link} href="https://flowbite-react.com">
+      <NavbarBrand as={Link} href="/home">
         <img src="/favicon.ico" className="mr-3 h-6 sm:h-9" alt="Flowbite React Logo" />
         <span className="self-center whitespace-nowrap text-xl font-semibold dark:text-white">UnClutter</span>
       </NavbarBrand>
       <NavbarToggle />
       <NavbarCollapse>
-        <NavbarLink href="#" active>
+        <NavbarLink href="/home" active>
           Home
         </NavbarLink>
         <NavbarLink as={Link} href="#">
           About
         </NavbarLink>
-        <NavbarLink href="#">Services</NavbarLink>
-        <NavbarLink href="#">Pricing</NavbarLink>
-        <NavbarLink href="#">Contact</NavbarLink>
         <NavbarLink href="#" onClick={logout}>
           <Tooltip content="Log Out" placement="bottom">
             <svg className="w-6 h-6 text-red-500 dark:text-red-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
