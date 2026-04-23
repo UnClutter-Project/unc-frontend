@@ -1,5 +1,6 @@
 import type { Config } from "tailwindcss";
-import { heroui } from "@heroui/react";
+// import { heroui } from "@heroui/react";
+import flowbite from "flowbite/plugin";
 
 const config: Config = {
   content: [
@@ -10,8 +11,8 @@ const config: Config = {
   theme: {
     extend: {},
   },
-  darkMode: "class",
-  plugins: [heroui()],
+  darkMode: false,
+  plugins: [flowbite],
 };
 
 export default config;

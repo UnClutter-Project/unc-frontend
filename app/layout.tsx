@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { Providers } from "./providers";
+import { ThemeInit } from "../.flowbite-react/init";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -23,15 +24,14 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  
   return (
     <html lang="en">
+      <ThemeInit/>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        {/* <Providers> */}
-          {/* <Navbar /> */}
+        >
           <main>{children}</main>
-        {/* </Providers> */}
       </body>
     </html>
   );
