@@ -27,9 +27,9 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-kreme font-sans text-black">
       <Navi />
-      <section>
+      <section style={{ width: "90%", justifyContent: "center", margin: "0 auto", maxWidth: "1200px" }}>
       <h3 className="text-2xl font-bold mb-2 mt-4 px-4">Upper</h3>
-      <div className="px-14 grid grid-cols-4">
+      <div className="grid grid-cols-4 gap-1">
         <Card className="max-w-sm my-2"
         imgSrc="https://contents.mediadecathlon.com/p1901236/k$2836c12f148eea1c5e31429acfb405be/t-shirt-katun-murni-fitness-sportee-hitam-domyos-8572641.jpg?f=1920x0&format=auto">
           <h5 className="text-2xl font-bold">BAJU</h5>
