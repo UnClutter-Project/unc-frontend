@@ -9,11 +9,14 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "@heroui/navbar": "^2.2.29",
+    "@heroui/react": "^2.8.9",
     "antd": "^6.2.3",
     "antd-style": "^4.1.0",
     "axios": "^1.13.2",
     "next": "16.0.6",
     "next-navigation": "^1.0.6",
+    "postcss": "^8.5.8",
     "react": "19.2.0",
     "react-dom": "19.2.0",
     "use-react-state": "0.1.0-alpha.0"
