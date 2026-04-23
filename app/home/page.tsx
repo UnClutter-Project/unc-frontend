@@ -2,6 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
+import Navi from "../navbar/navigation";
 
 export default function Home() {
 
@@ -27,7 +28,8 @@ export default function Home() {
   };
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-putih font-sans text-black">
+    <div className="bg-putih font-sans text-black">
+      <Navi />
       <h4>MEMK</h4>
       <button onClick={logout}>LOGOUT</button>
     </div>
