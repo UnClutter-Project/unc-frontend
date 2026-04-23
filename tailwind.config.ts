@@ -5,6 +5,7 @@ const config: Config = {
   content: [
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
     "./node_modules/@heroui/theme/dist/**/*.{js,ts,jsx,tsx}",
+    "./node_modules/flowbite-react/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
     extend: {},

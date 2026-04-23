@@ -1,10 +1,6 @@
 @import "tailwindcss";
-<<<<<<< HEAD
-/* @import "@heroui/styles"; */
-=======
 @import "flowbite-react/plugin/tailwindcss";
 @source "../.flowbite-react/class-list.json";
->>>>>>> 4c3b1459bc6d0d7be4eb30c560b28558b29bc8ee
 
 :root {
   --background: #f9f8f6;
